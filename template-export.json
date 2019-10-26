@@ -1,0 +1,47 @@
+AWSTemplateFormatVersion: 2010-09-09
+Transform:
+- AWS::Serverless-2016-10-31
+- AWS::CodeStar
+Parameters:
+  ProjectId:
+    Type: String
+    Description: AWS CodeStar projectID used to associate new resources to team members
+Resources:
+  GetHelloWorld:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: com.aws.codestar.projecttemplates.handler.HelloWorldHandler
+      CodeUri: s3://bucketlambdasam/9144e23a2d4138913e94392b1bbc1f0c
+      Runtime: java8
+      Role:
+        Fn::ImportValue:
+          Fn::Join:
+          - '-'
+          - - Ref: ProjectId
+            - Ref: AWS::Region
+            - LambdaTrustRole
+      Events:
+        GetEvent:
+          Type: Api
+          Properties:
+            Path: /java
+            Method: get
+  PostHelloWorld:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: com.aws.codestar.projecttemplates.handler.HelloWorldHandler
+      CodeUri: s3://bucketlambdasam/9144e23a2d4138913e94392b1bbc1f0c
+      Runtime: java8
+      Role:
+        Fn::ImportValue:
+          Fn::Join:
+          - '-'
+          - - Ref: ProjectId
+            - Ref: AWS::Region
+            - LambdaTrustRole
+      Events:
+        PostEvent:
+          Type: Api
+          Properties:
+            Path: /
+            Method: post
