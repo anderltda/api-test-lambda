@@ -3,6 +3,7 @@ version: 0.2
 phases:
   build:
     commands:
+      - echo Estou testando...
       - echo Entering build phase...
       - echo Build started on `date`
       - mvn package shade:shade
