@@ -10,8 +10,6 @@ phases:
       - echo Entering build phase...
       - echo Build started on `date`
       - mvn package shade:shade
-      - mv target/HelloWorld-1.0.jar .
-      - unzip HelloWorld-1.0.jar
       - aws cloudformation package --template-file template.yml --s3-bucket bucketlambdasam --output-template template-api-test-lambda-export.json
 artifacts:
   files:
