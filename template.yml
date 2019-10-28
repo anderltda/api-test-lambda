@@ -1,15 +1,12 @@
 AWSTemplateFormatVersion: 2010-09-09
 Transform:
 - AWS::Serverless-2016-10-31
-- AWS::CodeStar
-
 Parameters:
   ProjectId:
     Type: String
     Default: api-teste-lambida,
-    Description: AWS CodeStar projectID used to associate new resources to team members
+    Description: AWS Lambda projectID
     
-
 Resources:
   GetHelloWorld:
     Type: AWS::Serverless::Function
@@ -17,23 +14,6 @@ Resources:
       Handler: com.aws.codestar.projecttemplates.handler.HelloWorldHandler
       CodeUri: ./target/HelloWorld-1.0.jar
       Runtime: java8
-      Role: !Ref HelloWorldLambdaRole
-
-  HelloWorldLambdaRole:
-    Type: AWS::IAM::Role
-    Properties:
-      AssumeRolePolicyDocument:
-        Version: 2012-10-17
-        Statement:
-          - Effect: Allow
-            Principal:
-              Service:
-                - lambda.amazonaws.com
-            Action:
-              - sts:AssumeRole
-      ManagedPolicyArns:
-        - arn:aws:iam::aws:policy/AWSLambdaFullAccess
-        
       Events:
         GetEvent:
           Type: Api
@@ -47,7 +27,6 @@ Resources:
       Handler: com.aws.codestar.projecttemplates.handler.HelloWorldHandler
       CodeUri: ./target/HelloWorld-1.0.jar
       Runtime: java8
-      Role: !Ref HelloWorldLambdaRole
       Events:
         PostEvent:
           Type: Api
