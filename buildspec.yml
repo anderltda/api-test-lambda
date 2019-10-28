@@ -10,7 +10,7 @@ phases:
       - echo Entering build phase...
       - echo Build started on `date`
       - mvn package shade:shade
-      - aws cloudformation package --template-file template.yml --s3-bucket bucketlambdasam --stack-name api-test-lambda --output-template template-api-test-lambda-export.json
+      - aws cloudformation package --template-file template.yml --s3-bucket bucketlambdasam --output-template template-api-test-lambda-export.json
 artifacts:
   files:
     - template-api-test-lambda-export.json
