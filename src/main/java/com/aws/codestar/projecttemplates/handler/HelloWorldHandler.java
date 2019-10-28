@@ -19,6 +19,36 @@ public class HelloWorldHandler implements RequestHandler<Object, Object> {
         headers.put("X-Custom-Header", "application/json");
         System.err.println("This is a test log message 1");
         System.err.println("This is a test log message 2");
-        return new GatewayResponse("{ \"Output\": \"New Hello World Anderson!\"}", headers, 200);
+
+        StringBuilder builder = new StringBuilder();
+        
+        builder.append("{ ");
+        
+        builder.append("\"name\"");
+        builder.append(" : ");
+        builder.append("\"Anderson\"");
+        
+        builder.append(",");
+        
+        builder.append("\"nickname\"");
+        builder.append(" : ");
+        builder.append("\"anderltda\"");
+        
+        builder.append(",");
+        
+        builder.append("\"lastname\"");
+        builder.append(" : ");
+        builder.append("\"Nascimento\"");
+        
+        builder.append(",");
+        
+        builder.append("\"age\"");
+        builder.append(" : ");
+        builder.append("\"35\"");
+        
+        builder.append(" }");
+        
+        
+        return new GatewayResponse(builder.toString(), headers, 200);
     }
 }

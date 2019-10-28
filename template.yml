@@ -10,6 +10,7 @@ Parameters:
 Resources:
   GetHelloWorld:
     Type: AWS::Serverless::Function
+    Description: AWS Lambda method GetHelloWorld
     Properties:
       Handler: com.aws.codestar.projecttemplates.handler.HelloWorldHandler
       CodeUri: ./target/HelloWorld-1.0.jar
@@ -23,6 +24,7 @@ Resources:
 
   PostHelloWorld:
     Type: AWS::Serverless::Function
+    Description: AWS Lambda method PostHelloWorld
     Properties:
       Handler: com.aws.codestar.projecttemplates.handler.HelloWorldHandler
       CodeUri: ./target/HelloWorld-1.0.jar
