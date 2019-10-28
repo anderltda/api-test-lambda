@@ -6,7 +6,9 @@ Transform:
 Parameters:
   ProjectId:
     Type: String
+    Default: api-teste-lambida,
     Description: AWS CodeStar projectID used to associate new resources to team members
+    
 
 Resources:
   GetHelloWorld:
@@ -15,9 +17,23 @@ Resources:
       Handler: com.aws.codestar.projecttemplates.handler.HelloWorldHandler
       CodeUri: ./target/HelloWorld-1.0.jar
       Runtime: java8
-      Role:
-        Fn::ImportValue:
-          !Join ['-', [!Ref 'ProjectId', !Ref 'AWS::Region', 'LambdaTrustRole']]
+      Role: !Ref HelloWorldLambdaRole
+
+  HelloWorldLambdaRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AWSLambdaFullAccess
+        
       Events:
         GetEvent:
           Type: Api
@@ -31,9 +47,7 @@ Resources:
       Handler: com.aws.codestar.projecttemplates.handler.HelloWorldHandler
       CodeUri: ./target/HelloWorld-1.0.jar
       Runtime: java8
-      Role:
-        Fn::ImportValue:
-          !Join ['-', [!Ref 'ProjectId', !Ref 'AWS::Region', 'LambdaTrustRole']]
+      Role: !Ref HelloWorldLambdaRole
       Events:
         PostEvent:
           Type: Api
