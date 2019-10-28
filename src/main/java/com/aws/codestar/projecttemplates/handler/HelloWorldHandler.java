@@ -19,6 +19,6 @@ public class HelloWorldHandler implements RequestHandler<Object, Object> {
         headers.put("X-Custom-Header", "application/json");
         System.err.println("This is a test log message 1");
         System.err.println("This is a test log message 2");
-        return new GatewayResponse("{ \"Output\": \"Hello World Anderson!\"}", headers, 200);
+        return new GatewayResponse("{ \"Output\": \"New Hello World Anderson!\"}", headers, 200);
     }
 }

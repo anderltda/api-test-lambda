@@ -1,16 +1,32 @@
 version: 0.2
-
+            
 phases:
   install:
     runtime-versions:
       java: corretto11
+    commands:
+      - echo Start runtime build...
+    finally:
+      - echo Finaly runtime build...
+  pre_build:
+    commands:
+      - echo Start Pre build...
+    finally:
+      - echo Finaly Pre build...
   build:
     commands:
-      - echo Estou testando...
+      - echo iniciando build
       - echo Entering build phase...
-      - echo Build started on `date`
+      - echo Build started on `date`   
       - mvn package shade:shade
       - aws cloudformation package --template-file template.yml --s3-bucket bucketlambdasam --output-template template-api-test-lambda-export.json
+    finally:
+      - echo Finaly build...
+  post_build:
+    commands:
+      - echo Start Pos build...
+    finally:
+      - echo Finaly Pos build...
 artifacts:
   files:
     - template-api-test-lambda-export.json
