@@ -28,7 +28,7 @@ phases:
       - cd $PATH_TEMPLATE
       - ls -l 
     finally:
-      - aws cloudformation deploy --template-file template-api-test-lambda-export.yaml --stack-name -api-test-lambda --capabilities CAPABILITY_IAM
+      - aws cloudformation deploy --template-file template-api-test-lambda-export.yaml --stack-name api-test-lambda --capabilities CAPABILITY_IAM
 artifacts:
   files:
     - template-api-test-lambda-export.yaml
