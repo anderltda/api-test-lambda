@@ -27,9 +27,8 @@ phases:
       - echo Start Pos build...
       - cd $PATH_TEMPLATE
       - ls -l 
-      - aws cloudformation deploy --template-file template-api-test-lambda-export.yaml --stack-name -api-test-lambda --capabilities CAPABILITY_IAM
     finally:
-      - echo Finaly Pos build...
+      - aws cloudformation deploy --template-file template-api-test-lambda-export.yaml --stack-name -api-test-lambda --capabilities CAPABILITY_IAM
 artifacts:
   files:
     - template-api-test-lambda-export.yaml
