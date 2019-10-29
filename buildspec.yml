@@ -19,9 +19,9 @@ phases:
       - echo Entering build phase...
       - echo Build started on `date`   
       - mvn package shade:shade
-      - aws cloudformation package --template-file template.yml --s3-bucket bucketlambdasam --output-template template-api-test-lambda-export.json
+      - aws cloudformation package --template-file template.yml --s3-bucket bucketlambdasam --output-template template-api-test-lambda-export.yaml
     finally:
-      - echo Finaly build...
+      - cloudformation deploy --template-file template-api-test-lambda-export.yaml --stack-name -api-test-lambda --capabilities CAPABILITY_IAM
   post_build:
     commands:
       - echo Start Pos build...
@@ -29,4 +29,4 @@ phases:
       - echo Finaly Pos build...
 artifacts:
   files:
-    - template-api-test-lambda-export.json
+    - template-api-test-lambda-export.yaml
