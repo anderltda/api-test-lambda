@@ -20,7 +20,7 @@ phases:
       - echo Build started on `date`   
       - mvn package shade:shade
     finally:
-      - PATH_TEMPLATE=$(pwd)/template-api-test-lambda-export.yaml
+      - PATH_TEMPLATE=$(pwd)
       - aws cloudformation package --template-file template.yaml --s3-bucket bucketlambdasam --output-template template-api-test-lambda-export.yaml
   post_build:
     commands:
