@@ -22,7 +22,7 @@ phases:
     finally:
       - PATH_TEMPLATE=$(pwd)/template-api-test-lambda-export.yaml
       - aws cloudformation package --template-file template.yaml --s3-bucket bucketlambdasam --output-template template-api-test-lambda-export.yaml
-      - aws cloudformation deploy --template-file PATH_TEMPLATE --stack-name -api-test-lambda --capabilities CAPABILITY_IAM
+      - aws cloudformation deploy --template-file echo $PATH_TEMPLATE --stack-name -api-test-lambda --capabilities CAPABILITY_IAM
   post_build:
     commands:
       - echo Start Pos build...
