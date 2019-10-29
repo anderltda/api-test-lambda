@@ -23,6 +23,7 @@ phases:
     finally:
       - echo $CODEBUILD_BUILD_ARN
       - echo $CODEBUILD_SOURCE_REPO_URL
+      - pwd
       #- aws cloudformation deploy --template-file template-api-test-lambda-export.yaml --stack-name -api-test-lambda --capabilities CAPABILITY_IAM
   post_build:
     commands:
