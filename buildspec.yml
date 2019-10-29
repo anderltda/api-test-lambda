@@ -25,7 +25,7 @@ phases:
   post_build:
     commands:
       - echo Start Pos build...
-      - aws cloudformation deploy --template-file $PATH_TEMPLATE --stack-name -api-test-lambda --capabilities CAPABILITY_IAM
+      - aws cloudformation deploy --template-file PATH_TEMPLATE --stack-name -api-test-lambda --capabilities CAPABILITY_IAM
     finally:
       - echo Finaly Pos build...
 artifacts:
