@@ -20,9 +20,9 @@ phases:
       - echo Build started on `date`   
       - mvn package shade:shade
       - aws cloudformation package --template-file template.yaml --s3-bucket bucketlambdasam --output-template template-api-test-lambda-export.yaml   
-      - pwd  
     finally:
-      - pwd/template-api-test-lambda-export.yaml
+      - dir_atual=$(pwd)
+      - echo $dir_atual/template-api-test-lambda-export.yaml
       #- aws cloudformation deploy --template-file template-api-test-lambda-export.yaml --stack-name -api-test-lambda --capabilities CAPABILITY_IAM
   post_build:
     commands:
