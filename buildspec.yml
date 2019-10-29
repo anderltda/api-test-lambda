@@ -21,7 +21,7 @@ phases:
       - mvn package shade:shade
       #- aws cloudformation package --template-file template.yaml --s3-bucket bucketlambdasam --output-template template-api-test-lambda-export.yaml   
     finally:
-      - echo CODEBUILD_BUILD_ARN
+      - echo $CODEBUILD_BUILD_ARN
       #- aws cloudformation deploy --template-file template-api-test-lambda-export.yaml --stack-name -api-test-lambda --capabilities CAPABILITY_IAM
   post_build:
     commands:
